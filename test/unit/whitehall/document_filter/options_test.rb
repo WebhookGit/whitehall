@@ -145,10 +145,10 @@ module Whitehall
         options = filter_options.for(:topics)
 
         expected_grouped_options = {
-          "Topics" => [[topic.name, topic.slug]],
+          "Policy Areas" => [[topic.name, topic.slug]],
           "Topical events" => [[topical_event.name, topical_event.slug]]
         }
-        assert_equal ["All topics", "all"], options.all
+        assert_equal ["All policy areas", "all"], options.all
         assert_equal expected_grouped_options, options.grouped
         assert_equal [], options.ungrouped
       end
