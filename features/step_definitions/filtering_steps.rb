@@ -8,7 +8,7 @@ When(/^I (?:also )?filter by (only )?a publication type$/) do |only|
 end
 
 When(/^I (?:also )?filter by (only )?a topic$/) do |only|
-  select_filter "Topic", "A Topic", !!only
+  select_filter "Policy Area", "A Topic", !!only
 end
 
 When(/^I (?:also )?filter by (only )?a department$/) do |only|
@@ -68,10 +68,10 @@ Then(/^I should be able to filter publications by keyword, publication type, top
   assert_listed_document_count 1
   assert page.has_content? "Guidance publication"
 
-  select_filter "Topic", "A Topic", and_clear_others: true
+  select_filter "Policy Area", "A Topic", and_clear_others: true
   assert_listed_document_count 1
-  assert page.has_content? "Publication with the topic"
-  assert page.text.match /1 publication about A Topic ./
+  assert page.has_content? "Publication with the policy area"
+  assert page.text.match /1 publication about A Policy Area ./
 
   select_filter "Department", "A Department", and_clear_others: true
   assert_listed_document_count 1
@@ -177,7 +177,7 @@ Then(/^I should be able to filter announcements by keyword, announcement type, t
   within '#document-filter' do
     page.fill_in "Contains", with: "keyword"
     page.select "News stories", from: "Announcement type"
-    page.select "A Topic", from: "Topic"
+    page.select "A Topic", from: "Policy Area"
     page.select "A Department", from: "Department"
     page.select "A World Location", from: "World locations"
     page.fill_in "Published after", with: "01/01/2013"

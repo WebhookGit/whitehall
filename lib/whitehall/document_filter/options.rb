@@ -26,7 +26,7 @@ module Whitehall
         document_type: 'document_type',
         publication_type: 'publication_filter_option',
         organisations: 'departments',
-        topics: 'topics',
+        topics: 'policy_areas',
         announcement_type: 'announcement_filter_option',
         official_documents: 'official_document_status',
         locations: 'world_locations',
