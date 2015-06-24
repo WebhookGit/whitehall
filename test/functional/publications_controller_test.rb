@@ -231,13 +231,13 @@ class PublicationsControllerTest < ActionController::TestCase
     assert_equal "consultation_#{consultation.id}", css_select(".filter-results .document-row").last['id']
   end
 
-  view_test "#index highlights all topics filter option by default" do
+  view_test "#index highlights all policy areas filter option by default" do
     given_two_documents_in_two_topics
 
     get :index
 
     assert_select "select[name='topics[]']" do
-      assert_select "option[selected='selected']", text: "All topics"
+      assert_select "option[selected='selected']", text: "All policy areas"
     end
   end
 
@@ -358,24 +358,24 @@ class PublicationsControllerTest < ActionController::TestCase
   end
 
   view_test "#index requested as JSON includes URL to the atom feed including any filters" do
-    create(:topic, name: "topic-1")
+    create(:topic, name: "policy-area-1")
     create(:organisation, name: "organisation-1")
 
-    get :index, format: :json, topics: ["topic-1"], departments: ["organisation-1"]
+    get :index, format: :json, topics: ["policy-area-1"], departments: ["organisation-1"]
 
     json = ActiveSupport::JSON.decode(response.body)
 
-    assert_equal json["atom_feed_url"], publications_url(format: "atom", topics: ["topic-1"], departments: ["organisation-1"], host: Whitehall.public_host, protocol: Whitehall.public_protocol)
+    assert_equal json["atom_feed_url"], publications_url(format: "atom", topics: ["policy-area-1"], departments: ["organisation-1"], host: Whitehall.public_host, protocol: Whitehall.public_protocol)
   end
 
   view_test "#index requested as JSON includes atom feed URL without date parameters" do
-    create(:topic, name: "topic-1")
+    create(:topic, name: "policy-area-1")
 
-    get :index, format: :json, from_date: "2012-01-01", topics: ["topic-1"]
+    get :index, format: :json, from_date: "2012-01-01", topics: ["policy-area-1"]
 
     json = ActiveSupport::JSON.decode(response.body)
 
-    assert_equal json["atom_feed_url"], publications_url(format: "atom", topics: ["topic-1"], host: Whitehall.public_host, protocol: Whitehall.public_protocol)
+    assert_equal json["atom_feed_url"], publications_url(format: "atom", topics: ["policy-area-1"], host: Whitehall.public_host, protocol: Whitehall.public_protocol)
   end
 
   view_test "#index requested as JSON includes email signup path without date parameters" do
@@ -388,7 +388,7 @@ class PublicationsControllerTest < ActionController::TestCase
     assert_equal json["email_signup_url"], new_email_signups_path(email_signup: { feed: atom_url })
   end
 
-  view_test "#index requested as JSON includes email signup path with organisation and topic parameters" do
+  view_test "#index requested as JSON includes email signup path with organisation and policy area parameters" do
     topic = create(:topic)
     organisation = create(:organisation)
 

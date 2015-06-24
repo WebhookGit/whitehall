@@ -2,15 +2,15 @@ require 'test_helper'
 
 class Admin::TaggableContentHelperTest < ActionView::TestCase
 
-  test '#taggable_topics_container returns an array of name/ID pairs for all Topics' do
-    topic_b = create(:topic, name: 'Topic B')
-    topic_a = create(:topic, name: 'Topic A')
-    topic_c = create(:topic, name: 'Topic C')
+  test '#taggable_topics_container returns an array of name/ID pairs for all Policy Areas' do
+    topic_b = create(:topic, name: 'Policy Area B')
+    topic_a = create(:topic, name: 'Policy Area A')
+    topic_c = create(:topic, name: 'Policy Area C')
 
     assert_equal [
-      ['Topic A', topic_a.id],
-      ['Topic B', topic_b.id],
-      ['Topic C', topic_c.id],
+      ['Policy Area A', topic_a.id],
+      ['Policy Area B', topic_b.id],
+      ['Policy Area C', topic_c.id],
     ], taggable_topics_container
   end
 

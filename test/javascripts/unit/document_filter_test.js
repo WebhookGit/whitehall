@@ -49,7 +49,7 @@ module("Document filter", {
           "title": "document-title",
           "url": "/document-path",
           "organisations": "organisation-name-1, organisation-name-2",
-          "topics": "topic-name-1, topic-name-2",
+          "topics": "policy-area-name-1, policy-area-name-2",
           "field_of_operation": "place-of-war"
         },
         {

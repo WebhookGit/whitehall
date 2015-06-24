@@ -6,8 +6,8 @@ class TagChangesExporterTest < ActiveSupport::TestCase
 
   def setup
     @csv_file = Tempfile.new('tag_changes')
-    @topic_id_to_add = "the-new-topic"
-    @topic_id_to_remove = "the-old-topic"
+    @topic_id_to_add = "the-new-policy-area"
+    @topic_id_to_remove = "the-old-policy-area"
     @publication = create :publication, :published, primary_specialist_sector_tag: @topic_id_to_remove
     @second_publication = create :publication, :published, primary_specialist_sector_tag: @topic_id_to_remove
     @third_publication = create :publication, :published, primary_specialist_sector_tag: @topic_id_to_add
@@ -29,15 +29,15 @@ class TagChangesExporterTest < ActiveSupport::TestCase
         "document_id" => @publication.document.id.to_s,
         "document_type" => @publication.document.document_type,
         "slug" => @publication.slug,
-        "add_topic" => "the-new-topic",
-        "remove_topic" => "the-old-topic"
+        "add_policy_area" => "the-new-policy-area",
+        "remove_policy_area" => "the-old-policy-area"
       },
       {
         "document_id" => @second_publication.document.id.to_s,
         "document_type" => @second_publication.document.document_type,
         "slug" => @second_publication.slug,
-        "add_topic" => "the-new-topic",
-        "remove_topic" => "the-old-topic"
+        "add_topic_area" => "the-new-topic-area",
+        "remove_topic_area" => "the-old-topic-area"
       }
     ]
   end

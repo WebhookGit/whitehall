@@ -154,7 +154,7 @@ class ImportTest < ActiveSupport::TestCase
 
   test '#perform assigns policy areas to the document' do
     topic = create(:topic)
-    data = publication_csv_sample('topic_1' => topic.slug)
+    data = publication_csv_sample('policy_area_1' => topic.slug)
 
     import = perform_import(csv_data: data, data_type: 'publication', organisation_id: organisation.id)
     edition = import.imported_editions.first

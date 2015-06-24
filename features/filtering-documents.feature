@@ -6,7 +6,7 @@ Feature: Filtering Documents
   - Publications (inc. Consultations & Statistics):
     - Keyword
     - Publication type
-    - Topic
+    - Policy Area
     - Department
     - Official document status
     - World locations
@@ -14,13 +14,13 @@ Feature: Filtering Documents
 
   - Policies
     - Keyword
-    - Topic
+    - Policy Area
     - Department
 
   - Announcements
     - Keyword
     - Announcement type
-    - Topic
+    - Policy Area
     - Department
     - World Location
     - Published date
@@ -33,12 +33,12 @@ Feature: Filtering Documents
   Scenario: Filtering publications
     Given there are some published publications
     When I visit the publications index page
-    Then I should be able to filter publications by keyword, publication type, topic, department, official document status, world location, and publication date
+    Then I should be able to filter publications by keyword, publication type, policy area, department, official document status, world location, and publication date
 
   Scenario: Filtering announcements
     Given there are some published announcements
     When I visit the announcements index page
-    Then I should be able to filter announcements by keyword, announcement type, topic, department, world location and publication date
+    Then I should be able to filter announcements by keyword, announcement type, policy area, department, world location and publication date
 
   @javascript
   Scenario: Filtering publications in a javascript-enabled browser

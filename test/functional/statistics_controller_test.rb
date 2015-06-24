@@ -33,7 +33,7 @@ class StatisticsControllerTest < ActionController::TestCase
     assert_cache_control("max-age=#{Whitehall.default_cache_max_age / 2}")
   end
 
-  view_test "#index highlights selected topic filter options" do
+  view_test "#index highlights selected policy area filter options" do
     given_two_statistics_publications_in_two_topics
 
     get :index, topics: [@topic_1, @topic_2]

@@ -10,11 +10,11 @@ Feature: Viewing statistics
     When I filter the statistics by keyword, from date and to date
     And I should only see statistics matching the given keyword, from date and to date
 
-  Scenario: Citizen filters the list of statistics by department and topic
-    Given there are some statisics for various departments and topics
+  Scenario: Citizen filters the list of statistics by department and policy area
+    Given there are some statisics for various departments and policy areas
     When I visit the statistics index page
-    And I filter the statistics by department and topic
-    Then I should only see statistics for the selected departments and topics
+    And I filter the statistics by department and policy area
+    Then I should only see statistics for the selected departments and policy areas
 
   Scenario: Citizen views the details of statistics
     Given there is a statistics publication

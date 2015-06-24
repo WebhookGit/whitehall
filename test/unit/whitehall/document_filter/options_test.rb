@@ -39,12 +39,12 @@ module Whitehall
       end
 
       test '#label_for downcases policy areas' do
-        topic = create(:topic, name: "Example Topic", slug: "example-topic")
+        topic = create(:topic, name: "Example Policy Area", slug: "example-policy-area")
         topical_event = create(:topical_event, :active, name: "Example Topical Event", slug: "example-topical-event")
 
-        assert_equal "Example Topic", filter_options.label_for("topics", "example-topic")
-        assert_equal "Example Topical Event", filter_options.label_for("topics", "example-topical-event")
-        assert_equal "All topics", filter_options.label_for("topics", "all")
+        assert_equal "Example Policy Area", filter_options.label_for("policy-areas", "example-policy-area")
+        assert_equal "Example Topical Event", filter_options.label_for("policy-areas", "example-topical-event")
+        assert_equal "All policy areas", filter_options.label_for("policy-areas", "all")
       end
 
       test '#label_for downcases official docs' do
@@ -102,7 +102,7 @@ module Whitehall
       end
 
       test "valid_resource_filter_options? returns false when filtered resources do not exist" do
-        refute filter_options.valid_resource_filter_options?(topics: ['no-such-topic'])
+        refute filter_options.valid_resource_filter_options?(topics: ['no-such-policy-area'])
       end
 
       test "valid_resource_filter_options? doesn't choke on string values" do
@@ -145,10 +145,10 @@ module Whitehall
         options = filter_options.for(:topics)
 
         expected_grouped_options = {
-          "Topics" => [[topic.name, topic.slug]],
+          "Policy areas" => [[topic.name, topic.slug]],
           "Topical events" => [[topical_event.name, topical_event.slug]]
         }
-        assert_equal ["All topics", "all"], options.all
+        assert_equal ["All policy areas", "all"], options.all
         assert_equal expected_grouped_options, options.grouped
         assert_equal [], options.ungrouped
       end

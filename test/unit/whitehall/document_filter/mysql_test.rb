@@ -16,7 +16,7 @@ module Whitehall::DocumentFilter
       assert_nil Whitehall::DocumentFilter::Mysql.new.selected_publication_filter_option
     end
 
-    test "topics param filters the documents by topic using slugs" do
+    test "policy areas param filters the documents by topic using slugs" do
       topic = stub_topic("car-tax")
 
       filtered_scope = stub_document_scope('filtered_scope')
@@ -27,7 +27,7 @@ module Whitehall::DocumentFilter
       assert_equal filtered_scope, filter.documents
     end
 
-    test "topics param sets #selected_topics" do
+    test "policy areas param sets #selected_topics" do
       topic = stub_topic("car-tax")
 
       filtered_scope = stub_document_scope('filtered_scope')
@@ -38,7 +38,7 @@ module Whitehall::DocumentFilter
       assert_equal [topic], filter.selected_topics
     end
 
-    test "topics param does not filter if topics are not present" do
+    test "policy areas param does not filter if policy areas are not present" do
       document_scope.expects(:published_in_topic).never
 
       filter = create_filter(document_scope, topics: "")
@@ -46,7 +46,7 @@ module Whitehall::DocumentFilter
       assert_equal document_scope, filter.documents
     end
 
-    test "topics param does not filter if topic is 'all'" do
+    test "policy areas param does not filter if topic is 'all'" do
       document_scope.expects(:published_in_topic).never
 
       filter = create_filter(document_scope, topics: ['all'])
@@ -243,7 +243,7 @@ module Whitehall::DocumentFilter
       assert_equal news_article.document_id, filter.documents.first.document.id
     end
 
-    test "can filter announcements by topic" do
+    test "can filter announcements by policy area" do
       topic = create(:topic)
       create(:published_speech, topics: [topic])
       create(:published_news_article, topics: [topic])
@@ -305,7 +305,7 @@ module Whitehall::DocumentFilter
     end
 
     def stub_topic(slug)
-      topic = stub("topic-#{slug}", slug: slug, name: slug.humanize)
+      topic = stub("policy-area-#{slug}", slug: slug, name: slug.humanize)
       Classification.stubs(:where).with(slug: [slug]).returns([topic])
       topic
     end

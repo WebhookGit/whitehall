@@ -38,7 +38,7 @@ module CsvSampleHelpers
       "consultation_URN"  => "",
       "response_date"     => "20-Nov-2012",
       "response_summary"  => "summary required",
-      "topic_1"           => sample_topic.slug
+      "policy_area_1"           => sample_topic.slug
     )
   end
 

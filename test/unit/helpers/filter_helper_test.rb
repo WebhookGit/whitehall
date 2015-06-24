@@ -15,7 +15,7 @@ class FilterHelperTest < ActionView::TestCase
     assert options[1][:selected]
   end
 
-  test "#topic_options_for_statistics_announcement_filter renders select options for all topics with an associated release announcement in alphabetical order selecting passed in topic" do
+  test "#topic_options_for_statistics_announcement_filter renders select options for all policy areas with an associated release announcement in alphabetical order selecting passed in topic" do
     topic_1, topic_2, topic_3 = create(:topic, name: "B topic"), create(:topic, name: "C topic"), create(:topic, name: "A topic")
 
     create :statistics_announcement, topics: [topic_2]
@@ -24,7 +24,7 @@ class FilterHelperTest < ActionView::TestCase
     rendered = Nokogiri::HTML::DocumentFragment.parse(topic_options_for_statistics_announcement_filter(topic_3.slug))
     options = rendered.css("option")
 
-    assert_equal ["All topics", topic_3.name, topic_2.name], options.map(&:text)
+    assert_equal ["All policy areas", topic_3.name, topic_2.name], options.map(&:text)
     assert_equal ["", topic_3.slug, topic_2.slug], options.map {|option| option[:value]}
     assert options[1][:selected]
   end
@@ -58,7 +58,7 @@ class FilterHelperTest::FilterDescriptionTest < ActionView::TestCase
     assert_string_includes "containing fishslice", rendered_description(build_filter(keywords: "fishslice")).text
   end
 
-  test "It describes topics" do
+  test "It describes policy areas" do
     topic = build(:topic, name: "Community and society")
     assert_string_includes "about Community and society", rendered_description(build_filter(topics: [topic])).text
   end

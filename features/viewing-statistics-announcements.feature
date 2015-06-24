@@ -10,14 +10,14 @@ Feature: Viewing upcoming statistics announcements
     When I filter the statistics announcements by keyword, from_date and to_date
     And I should only see statistics announcements for those filters
 
-  Scenario: Citizen filters the list of statistics announcements by department and topic
-    Given there are some statistics announcements for various departments and topics
+  Scenario: Citizen filters the list of statistics announcements by department and policy area
+    Given there are some statistics announcements for various departments and policy areas
     When I visit the statistics announcements page
-    And I filter the statistics announcements by department and topic
-    Then I should only see statistics announcements for the selected departments and topics
+    And I filter the statistics announcements by department and policy area
+    Then I should only see statistics announcements for the selected departments and policy areas
 
   Scenario: Citizen views the details of a statistics announcement
     Given there is a statistics announcement
     When I visit the statistics announcements page
     And I click on the first statistics announcement
-    Then I should be on a page showing the title, release date, organisation, topic, summary and date change information of the release announcement
+    Then I should be on a page showing the title, release date, organisation, policy area, summary and date change information of the release announcement

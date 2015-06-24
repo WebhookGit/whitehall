@@ -36,10 +36,10 @@ module Edition::Topics
 private
 
   def has_at_least_one_topic
-    # We need to check the join model because topics will be empty until the
+    # We need to check the join model because policy areas will be empty until the
     # classification memberships records are saved, which won't happen until
-    # the parent topic is valid. We need to use #empty? here as ActiveRecord
-    # overrides it to avoid caching the topics association.
+    # the parent policy area is valid. We need to use #empty? here as ActiveRecord
+    # overrides it to avoid caching the policy areas association.
     if classification_memberships.empty? && topics.empty?
       errors.add(:topics, "at least one required")
     end

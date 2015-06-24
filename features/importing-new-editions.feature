@@ -86,7 +86,7 @@ Feature: Importing new editions
 
   DetailedGuides:
 
-  - topic_1..4: 1 column required, data optional
+  - policy_area_1..4: 1 column required, data optional
   - document_collection_1..4: 1 column required, data optional
   - detailed_guidance_category_1..4: 1 column required, data optional
   - related_detailed_guidance_1..4: 1 column required, data optional
@@ -123,11 +123,11 @@ Feature: Importing new editions
     Then the import succeeds, creating 1 imported publication for "Foreign Commonwealth Office" with "imported-awaiting-type" publication type
 
   Scenario: Importing publications sets imported state, ImportedAwaitingType type and default organisation, to be filled in later
-    Given a policy area with the slug "my-topic" exists
+    Given a policy area with the slug "my-policy-area" exists
     When I import the following data as CSV as "Publication" for "Department for Transport":
       """
-      old_url,title,summary,body,organisation,publication_type,document_collection_1,publication_date,order_url,price,isbn,urn,command_paper_number,ignore_1,attachment_1_url,attachment_1_title,country_1,topic_1
-      http://example.com/1,title,summary,body,,,,14-Dec-2011,,,,,,,,,,my-topic
+      old_url,title,summary,body,organisation,publication_type,document_collection_1,publication_date,order_url,price,isbn,urn,command_paper_number,ignore_1,attachment_1_url,attachment_1_title,country_1,policy_area_1
+      http://example.com/1,title,summary,body,,,,14-Dec-2011,,,,,,,,,,my-policy-area
       """
     Then the import succeeds, creating 1 imported publication for "Department for Transport" with "imported-awaiting-type" publication type
     And I can't make the imported publication into a draft edition yet
@@ -135,11 +135,11 @@ Feature: Importing new editions
     Then I can make the imported publication into a draft edition
 
   Scenario: Importing publications with blank publication dates allows them to be filled in later
-    Given a policy area with the slug "my-topic" exists
+    Given a policy area with the slug "my-policy-area" exists
     When I import the following data as CSV as "Publication" for "Department for Transport":
       """
-      old_url,title,summary,body,organisation,publication_type,document_collection_1,publication_date,order_url,price,isbn,urn,command_paper_number,ignore_1,attachment_1_url,attachment_1_title,country_1,topic_1
-      http://example.com/1,title,summary,body,department-for-transport,policy-papers,,,,,,,,,,,,my-topic
+      old_url,title,summary,body,organisation,publication_type,document_collection_1,publication_date,order_url,price,isbn,urn,command_paper_number,ignore_1,attachment_1_url,attachment_1_title,country_1,policy_area_1
+      http://example.com/1,title,summary,body,department-for-transport,policy-papers,,,,,,,,,,,,my-policy-area
       """
     Then the import succeeds, creating 1 imported publication for "Department for Transport" with no publication date
     And I can't make the imported publication into a draft edition yet
@@ -156,11 +156,11 @@ Feature: Importing new editions
     And the imported publication has an html attachment with the title "HTML attachment title" and body "Body part one plus body part two"
 
   Scenario: Importing news article sets imported state, ImportedAwaitingType type and default organisation, to be filled in later
-    Given a policy area with the slug "my-topic" exists
+    Given a policy area with the slug "my-policy-area" exists
     When I import the following data as CSV as "News article" for "Department for Transport":
       """
-      old_url,title,summary,body,organisation,minister_1,first_published,country_1,news_article_type,topic_1
-      http://example.com/1,title,summary,body,,,14-Dec-2011,,,my-topic
+      old_url,title,summary,body,organisation,minister_1,first_published,country_1,news_article_type,policy_area_1
+      http://example.com/1,title,summary,body,,,14-Dec-2011,,,my-policy-area
       """
     Then the import succeeds, creating 1 imported news article for "Department for Transport" with "imported-awaiting-type" news article type
     And I can't make the imported news article into a draft edition yet
@@ -168,11 +168,11 @@ Feature: Importing new editions
     Then I can make the imported news article into a draft edition
 
   Scenario: Importing news article with blank first published allows them to be filled in later
-    Given a policy area with the slug "my-topic" exists
+    Given a policy area with the slug "my-policy-area" exists
     When I import the following data as CSV as "News article" for "Department for Transport":
       """
-      old_url,title,summary,body,organisation,minister_1,first_published,country_1,news_article_type,topic_1
-      http://example.com/1,title,summary,body,department-for-transport,,,,news-stories,my-topic
+      old_url,title,summary,body,organisation,minister_1,first_published,country_1,news_article_type,policy_area_1
+      http://example.com/1,title,summary,body,department-for-transport,,,,news-stories,my-policy-area
       """
     Then the import succeeds, creating 1 imported news article for "Department for Transport" with no first published date
     And I can't make the imported news article into a draft edition yet
@@ -180,11 +180,11 @@ Feature: Importing new editions
     Then I can make the imported news article into a draft edition
 
   Scenario: Importing speeches sets ImportedAwaitingType speech type and blank "delivered by", to be filled in later
-    Given a policy area with the slug "my-topic" exists
+    Given a policy area with the slug "my-policy-area" exists
     When I import the following data as CSV as "Speech" for "Department for Transport":
       """
-      old_url,title,summary,body,organisation,type,delivered_by,delivered_on,event_and_location,country_1,topic_1
-      http://example.com/1,title,summary,body,,,,14-Dec-2011,location,,my-topic
+      old_url,title,summary,body,organisation,type,delivered_by,delivered_on,event_and_location,country_1,policy_area_1
+      http://example.com/1,title,summary,body,,,,14-Dec-2011,location,,my-policy-area
       """
     Then the import succeeds, creating 1 imported speech with "imported-awaiting-type" speech type and with no deliverer set
     And the imported speech's organisation is set to "Department for Transport"
@@ -196,11 +196,11 @@ Feature: Importing new editions
 
   Scenario: Importing speeches with blank delivered on means it must be filled in later, along with the deliverer
     Given a person called "Joe Bloggs"
-    And a policy area with the slug "my-topic" exists
+    And a policy area with the slug "my-policy-area" exists
     When I import the following data as CSV as "Speech" for "Department for Transport":
       """
-      old_url,title,summary,body,organisation,type,delivered_by,delivered_on,event_and_location,country_1,topic_1
-      http://example.com/1,title,summary,body,department-for-transport,transcript,joe-bloggs,,location,,my-topic
+      old_url,title,summary,body,organisation,type,delivered_by,delivered_on,event_and_location,country_1,policy_area_1
+      http://example.com/1,title,summary,body,department-for-transport,transcript,joe-bloggs,,location,,my-policy-area
       """
     Then the import succeeds, creating 1 imported speech for "Department for Transport" with no delivered on date
     Then I can't make the imported speech into a draft edition yet
@@ -210,11 +210,11 @@ Feature: Importing new editions
     Then I can make the imported speech into a draft edition
 
   Scenario: Importing consultations with blank dates allows them to be filled in later
-    Given a policy area with the slug "my-topic" exists
+    Given a policy area with the slug "my-policy-area" exists
     When I import the following data as CSV as "Consultation" for "Department for Transport":
       """
-      old_url,title,summary,body,organisation,opening_date,closing_date,response_date,response_summary,topic_1
-      http://example.com/1,title,summary,body,department-for-transport,,,,,my-topic
+      old_url,title,summary,body,organisation,opening_date,closing_date,response_date,response_summary,policy_area_1
+      http://example.com/1,title,summary,body,department-for-transport,,,,,my-policy-area
       """
     Then the import succeeds, creating 1 imported consultation for "Department for Transport" with no opening or closing date
     And I can't make the imported publication into a draft edition yet
@@ -232,19 +232,19 @@ Feature: Importing new editions
     Then I can delete the imported edition if I choose to
 
   Scenario: Importing detailed guides with policy area, detailed guidance category, related detailed guide and related mainstream content
-    Given a policy area with the slug "my-topic" exists
+    Given a policy area with the slug "my-policy-area" exists
     And a published document collection "My document collection" exists
     And a mainstream category with the slug "my-detailed-guidance-category" exists
     And a published detailed guide "My related detailed guide" for the organisation "Foreign Commonwealth Office"
     When I import the following data as CSV as "Detailed guide" for "Home Office":
       """
-      old_url,title,summary,body,organisation,topic_1,document_collection_1,detailed_guidance_category_1,related_detailed_guide_1,related_mainstream_content_url_1,related_mainstream_content_title_1
-      "[""http://example.com/1"",""http://example.com/2""]",title,summary,body,,my-topic,my-document-collection,my-detailed-guidance-category,my-related-detailed-guide,,
+      old_url,title,summary,body,organisation,policy_area_1,document_collection_1,detailed_guidance_category_1,related_detailed_guide_1,related_mainstream_content_url_1,related_mainstream_content_title_1
+      "[""http://example.com/1"",""http://example.com/2""]",title,summary,body,,my-policy-area,my-document-collection,my-detailed-guidance-category,my-related-detailed-guide,,
       """
     Then the import succeeds creating 1 detailed guidance document
     And the imported detailed guidance document has the following associations:
       | Name                             | Slugs                         |
-      | topics                           | my-topic                      |
+      | policy_areas                     | my-policy-area                |
       | document_collections             | my-document-collection        |
       | mainstream_categories            | my-detailed-guidance-category |
       | related_documents                | my-related-detailed-guide     |

@@ -34,7 +34,7 @@ class TopicTest < ActiveSupport::TestCase
     refute topic.deleted?
   end
 
-  test "return topics bi-directionally related to specific policy area" do
+  test "return policy areas bi-directionally related to specific policy area" do
     topic_1 = create(:topic)
     topic_2 = create(:topic)
     topic = build(:topic, related_classifications: [topic_1, topic_2])
@@ -45,7 +45,7 @@ class TopicTest < ActiveSupport::TestCase
     assert_equal [topic], topic_2.related_classifications
   end
 
-  test "should add related topics bi-directionally" do
+  test "should add related policy areas bi-directionally" do
     topic_1 = create(:topic)
     topic_2 = create(:topic)
     topic = create(:topic, related_classifications: [])
@@ -57,7 +57,7 @@ class TopicTest < ActiveSupport::TestCase
     assert_equal [topic], topic_2.related_classifications
   end
 
-  test "should remove related topics bi-directionally" do
+  test "should remove related policy areas bi-directionally" do
     topic_1 = create(:topic)
     topic_2 = create(:topic)
     topic = create(:topic, related_classifications: [topic_1, topic_2])
@@ -70,19 +70,19 @@ class TopicTest < ActiveSupport::TestCase
   end
 
   test 'should return search index data suitable for Rummageable' do
-    topic = create(:topic, name: "topic name", description: "topic description")
+    topic = create(:topic, name: "policy area name", description: "policy area description")
     assert_equal({
-                  'title' => 'topic name',
-                  'link' => '/government/topics/topic-name',
-                  'indexable_content' => 'topic description',
+                  'title' => 'policy area name',
+                  'link' => '/government/policy-areas/policy-area-name',
+                  'indexable_content' => 'policy area description',
                   'format' => 'topic',
-                  'description' => 'topic description',
-                  'slug' => 'topic-name'
+                  'description' => 'policy area description',
+                  'slug' => 'policy-area-name'
                   },
                 topic.search_index)
   end
 
-  test 'should add topic to search index on creating' do
+  test 'should add policy area to search index on creating' do
     topic = build(:topic)
 
     Whitehall::SearchIndex.expects(:add).with(topic)
@@ -90,22 +90,22 @@ class TopicTest < ActiveSupport::TestCase
     topic.save
   end
 
-  test 'should add topic to search index on updating' do
+  test 'should add policy area to search index on updating' do
     topic = create(:topic)
 
     Whitehall::SearchIndex.expects(:add).with(topic)
 
-    topic.name = 'different topic name'
+    topic.name = 'different policy area name'
     topic.save
   end
 
-  test 'should remove topic from search index on destroying' do
+  test 'should remove policy area from search index on destroying' do
     topic = create(:topic)
     Whitehall::SearchIndex.expects(:delete).with(topic)
     topic.destroy
   end
 
-  test 'should return search index data for all topics' do
+  test 'should return search index data for all policy areas' do
     create(:topic)
     create(:topic)
     create(:topic)

@@ -123,7 +123,7 @@ class TopicsControllerTest < ActionController::TestCase
     end
   end
 
-  view_test "GET :show displays latest documents relating to the topic, including atom feed and govdelivery links" do
+  view_test "GET :show displays latest documents relating to the policy area, including atom feed and govdelivery links" do
     topic = create(:topic)
     publication_1 = create(:published_publication, topics: [topic])
     news_article = create(:published_news_article, topics: [topic])

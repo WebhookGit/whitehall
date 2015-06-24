@@ -94,8 +94,8 @@ class DevelopmentModeStubs::FakeRummagerApiForStatisticsAnnouncementsTest < Acti
     assert_equal [announcement_1.title], matched_titles(organisations: announcement_1.organisations_slugs)
   end
 
-  test "#advanced_search with topics returns results associated with the topics" do
-    topic = create(:topic, name: 'A topic')
+  test "#advanced_search with policy areas returns results associated with the policy areas" do
+    topic = create(:topic, name: 'A policy area')
     announcement_1 = create :statistics_announcement, topics: [topic]
     announcement_2 = create :statistics_announcement
 
