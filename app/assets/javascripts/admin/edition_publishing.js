@@ -172,7 +172,7 @@ jQuery(function($) {
       if (this.$policies.length > 0 && this.$topics.length > 0) {
         this.updateTopicsWhenPolicySelected();
         label = $('label[for=edition_policy_content_ids]');
-        label.text(label.text() + ' (choosing policies will suggest some topics)');
+        label.text(label.text() + ' (choosing policies will suggest some policy areas)');
       }
     },
 
